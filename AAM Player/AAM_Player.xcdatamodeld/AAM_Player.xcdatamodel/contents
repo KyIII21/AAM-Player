@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Attr" representedClassName="Attr" syncable="YES">
+        <attribute name="display" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="key" optional="YES" attributeType="String"/>
+        <attribute name="sound" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="attrs" inverseEntity="Item"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO">
+            <userInfo>
+                <entry key="id" value="UUID()"/>
+            </userInfo>
+        </attribute>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="attrs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Attr" inverseName="item" inverseEntity="Attr"/>
+        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="items" inverseEntity="Playlist"/>
+    </entity>
+    <entity name="KeyPause" representedClassName="KeyPause" syncable="YES">
+        <attribute name="key" optional="YES" attributeType="String"/>
+        <attribute name="pause" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="order" inverseEntity="Playlist"/>
+    </entity>
+    <entity name="Playlist" representedClassName="Playlist" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Item" inverseName="playlist" inverseEntity="Item"/>
+        <relationship name="order" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="KeyPause" inverseName="playlist" inverseEntity="KeyPause"/>
+    </entity>
+    <elements>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Attr" positionX="-54" positionY="-9" width="128" height="118"/>
+        <element name="Playlist" positionX="-45" positionY="54" width="128" height="88"/>
+        <element name="KeyPause" positionX="-36" positionY="63" width="128" height="88"/>
+    </elements>
+</model>
